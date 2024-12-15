@@ -1,0 +1,32 @@
+replicaCount: 3  # Number of replicas for the deployment
+
+image:
+  repository: abhayy17/monitor
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer  
+  port: 80 
+
+resources:
+  limits:
+    cpu: 500m  # CPU limit
+    memory: 256Mi  # Memory limit
+  requests:
+    cpu: 200m  # CPU request
+    memory: 128Mi  # Memory request
+
+ingress:
+  enabled: false 
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
